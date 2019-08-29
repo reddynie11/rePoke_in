@@ -16,10 +16,18 @@ class PostDetail extends React.Component{
     }
     
     render(){
-        console.log(this.state.post)
-        return(
+        const post = this.state.post;
+        let postItem = post ? (
             <div className="container">
-                <h2>Post Details {this.state.id}</h2>
+                <h4>{post.title}</h4>
+                <p>{post.body}</p>
+            </div>
+        ) : (
+            <p className="center " >No post found</p>
+        )
+        return(
+            <div>
+                {postItem}
             </div>
         )
     }
