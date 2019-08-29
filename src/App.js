@@ -6,6 +6,7 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Navbar from './components/Navbar';
 import Posts from './components/Posts';
+import PostDetail from './components/PostDetail'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/about" component={About} />
       <Route path="/articles" component={Posts} />
       <Route path="/contact" component={Contact} />
+      <Route path="/:post_id" component={PostDetail} />
     </BrowserRouter>
   );
 }
