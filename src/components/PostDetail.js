@@ -23,7 +23,7 @@ class PostDetail extends React.Component{
                 <p>{post.body}</p>
             </div>
         ) : (
-            <div className="center " >No post found</div>
+            <div className="center " >loading post ...</div>
         )
         return(
             <div>
