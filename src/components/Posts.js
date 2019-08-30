@@ -21,7 +21,7 @@ class Posts extends React.Component{
                 return (
                     <div className="post card" key={post.id} >
                         <div className="card-content" >
-                            <Link to={"/"+ post.id}>
+                            <Link to={'/'+post.id}>
                                 <div className="card-title" >{post.title}</div>
                             </Link>
                             <p>{post.body}</p>

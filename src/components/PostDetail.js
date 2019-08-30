@@ -3,11 +3,11 @@ import axios from'axios';
 
 class PostDetail extends React.Component{
     state={
-        post:''
+        post: null
     }
     componentDidMount(){
-        let ID = this.props.match.params.post_id
-        axios.get('https://jsonplaceholder.typicode.com/posts/'+ ID)
+        let ID = this.props.match.params.post_id;
+        axios.get('https://jsonplaceholder.typicode.com/posts/'+ID)
              .then((responce)=>{
                  this.setState({
                      post : responce.data
@@ -18,12 +18,12 @@ class PostDetail extends React.Component{
     render(){
         const post = this.state.post;
         let postItem = post ? (
-            <div className="container">
+            <div className="post container">
                 <h4>{post.title}</h4>
                 <p>{post.body}</p>
             </div>
         ) : (
-            <p className="center " >No post found</p>
+            <div className="center " >No post found</div>
         )
         return(
             <div>
