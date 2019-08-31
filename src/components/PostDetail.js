@@ -1,23 +1,11 @@
 import React from 'react';
-import axios from'axios';
+//import axios from'axios';
+import {connect } from 'react-redux';
 
-class PostDetail extends React.Component{
-    state={
-        post: null
-    }
-    componentDidMount(){
-        let ID = this.props.match.params.post_id;
-        axios.get('https://jsonplaceholder.typicode.com/posts/'+ID)
-             .then((responce)=>{
-                 this.setState({
-                     post : responce.data
-                 })
-             })
-    }
-    
+class PostDetail extends React.Component{    
     render(){
-        const post = this.state.post;
-        let postItem = post ? (
+        const post = this.props.post;
+        const postItem = post ? (
             <div className="post container">
                 <h4>{post.title}</h4>
                 <p>{post.body}</p>
@@ -32,4 +20,12 @@ class PostDetail extends React.Component{
         )
     }
 }
-export default PostDetail;
+const mapStateToProps =(state, thisProps)=>{
+    let ID = thisProps.match.params.post_id;
+    return{
+        post : state.posts.find((post)=>{
+            return post.id === ID
+        })
+    }
+}
+export default connect(mapStateToProps)(PostDetail);
