@@ -3,8 +3,9 @@ import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class Posts extends React.Component{
- 
+   
     render(){
+        console.log(this.props)
         const {posts} =  this.props;
         const postList = posts.length ? (
             posts.map((post)=>{
@@ -15,6 +16,7 @@ class Posts extends React.Component{
                                 <div className="card-title" >{post.title}</div>
                             </Link>
                             <p>{post.body}</p>
+                            
                         </div>
                     </div>
                 )
@@ -36,4 +38,5 @@ const mapStateToProps=(state)=>{
         posts : state.posts
     }
 }
+
 export default connect(mapStateToProps)(Posts);

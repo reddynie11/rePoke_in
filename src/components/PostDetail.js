@@ -3,12 +3,20 @@ import React from 'react';
 import {connect } from 'react-redux';
 
 class PostDetail extends React.Component{    
+    handleDelete = ()=>{
+        this.props.deletePost(this.props.post.id);
+        this.props.history.push('/articles')
+    }
     render(){
+        console.log(this.props)
         const post = this.props.post;
         const postItem = post ? (
             <div className="post container">
                 <h4>{post.title}</h4>
                 <p>{post.body}</p>
+                <div className="center">
+                    <button className="btn grey" onClick={this.handleDelete} >Delete Post</button>
+                </div>
             </div>
         ) : (
             <div className="center " >loading post ...</div>
@@ -28,4 +36,9 @@ const mapStateToProps =(state, thisProps)=>{
         })
     }
 }
-export default connect(mapStateToProps)(PostDetail);
+const mapDispatchToProps = (dispatch)=>{
+    return{
+        deletePost : (id)=>{ dispatch({type : 'DELETE_POST', payload : id})}
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(PostDetail);
